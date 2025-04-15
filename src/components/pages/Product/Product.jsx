@@ -1,10 +1,14 @@
+import { useContext, useState } from "react";
 import "./Product.css";
+import { useDataCart } from "../../../useDataCart.jsx";
 export const Product = ({ data }) => {
-  console.log(data);
-
+  const { addToCart } = useDataCart();
   return (
     <>
-      <div className="product w-[31%] h-[45rem] text-white rounded-2xl bg-stone-700 ">
+      <div
+        className="product w-[31%] h-[45rem] text-white rounded-2xl bg-stone-700"
+        id={data.id}
+      >
         <img
           src={data.picadd}
           alt=""
@@ -20,6 +24,7 @@ export const Product = ({ data }) => {
           </div>
           <div className="buttonBox text-center p-4">
             <button
+              onClick={() => addToCart(data)}
               type="button"
               className="btnBuy text-center mx-auto rounded-[10px] text-black bg-yellow-400 w-28 py-2 text-xl cursor-pointer"
             >
