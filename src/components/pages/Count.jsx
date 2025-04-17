@@ -6,7 +6,7 @@ export const Count = () => {
   const [countProduct, setCountProduct] = useState(1);
   console.log(countProduct);
   const steigernNummer = () => {
-    setCountProduct(countProduct + 1);
+    setCountProduct(countProduct < 10 ? countProduct + 1 : 10);
   };
   const reduzierenNummer = () => {
     setCountProduct(countProduct > 1 ? countProduct - 1 : 1);
@@ -15,7 +15,7 @@ export const Count = () => {
     <>
       <FaMinus onClick={reduzierenNummer} />
       <input
-        className="count max-w-16 border-2 border-yellow-400 rounded-2xl text-center"
+        className="count max-w-16 border-2 border-yellow-400 outline-0 rounded-2xl text-center"
         type="number"
         name="count"
         value={countProduct}

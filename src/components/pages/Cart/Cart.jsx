@@ -1,5 +1,3 @@
-import { FaPlus } from "react-icons/fa";
-import { FaMinus } from "react-icons/fa";
 import { useEffect, useState } from "react";
 import { useDataCart } from "../../../useDataCart.jsx";
 import { Count } from "../Count.jsx";
@@ -33,7 +31,7 @@ const Cart = () => {
         Cart ( {cart ? cart.length : 0} )
       </div>
       {showCart && (
-        <div className="itemsBox absolute top-16 mt-10 bg-stone-950 rounded-2xl w-[30rem] py-12 right-10 flex gap-8 flex-col p-6">
+        <div className="itemsBox absolute top-16 mt-10 bg-stone-950 rounded-2xl w-[45rem] py-12 right-10 flex gap-8 flex-col p-6">
           {cart &&
             cart.map((item) => (
               <div
@@ -47,6 +45,21 @@ const Cart = () => {
                 {`${item.price} $`}
               </div>
             ))}
+          <div className="btns flex w-full justify-around">
+            <button
+              className="cursor-pointer bg-amber-500 text-white py-3 px-8 rounded-2xl text-2xl"
+              type="button"
+            >
+              Kaufen
+            </button>
+            <button
+              onClick={() => setShowCart(false)}
+              className="cursor-pointer bg-cyan-500 text-white py-2 px-8 rounded-2xl"
+              type="button"
+            >
+              weiter suchen
+            </button>
+          </div>
         </div>
       )}
     </>
