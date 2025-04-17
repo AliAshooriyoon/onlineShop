@@ -31,20 +31,30 @@ const Cart = () => {
         Cart ( {cart ? cart.length : 0} )
       </div>
       {showCart && (
-        <div className="itemsBox absolute top-16 mt-10 bg-stone-950 rounded-2xl w-[45rem] py-12 right-10 flex gap-8 flex-col p-6">
-          {cart &&
-            cart.map((item) => (
-              <div
-                className="cartBoxShower justify-between flex items-center gap-6"
-                key={item.id}
-              >
-                {item.name}
-                <div className="flex items-center gap-4">
-                  <Count />
-                </div>
-                {`${item.price} $`}
-              </div>
-            ))}
+        <div className="itemsBox absolute top-16 mt-10 bg-stone-950 rounded-2xl w-[45rem] py-12 right-10 p-6">
+          <table className="w-full text-center">
+            <thead className="w-full">
+              <tr className="flex justify-between w-full ">
+                <th></th>
+                <th></th>
+                <th></th>
+              </tr>
+            </thead>
+            {cart &&
+              cart.map((item) => (
+                <tbody className="">
+                  <tr>
+                    <th scope="col" className="py-2">
+                      {item.name}
+                    </th>
+                    <td scope="col" className="flex gap-1 px-4 items-center">
+                      <Count />
+                    </td>
+                    <td scope="col">{item.price} $</td>
+                  </tr>
+                </tbody>
+              ))}
+          </table>
           <div className="btns flex w-full justify-around">
             <button
               className="cursor-pointer bg-amber-500 text-white py-3 px-8 rounded-2xl text-2xl"
