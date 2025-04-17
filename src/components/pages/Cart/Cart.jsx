@@ -1,5 +1,8 @@
+import { FaPlus } from "react-icons/fa";
+import { FaMinus } from "react-icons/fa";
 import { useEffect, useState } from "react";
 import { useDataCart } from "../../../useDataCart.jsx";
+import { Count } from "../Count.jsx";
 
 const Cart = () => {
   const { products } = useDataCart();
@@ -23,17 +26,25 @@ const Cart = () => {
     console.log(cart);
   }, [cart]);
   // --------------------------------------
+
   return (
     <>
       <div onClick={() => setShowCart(!showCart)} className="cart">
         Cart ( {cart ? cart.length : 0} )
       </div>
       {showCart && (
-        <div className="itemsBox absolute top-16">
+        <div className="itemsBox absolute top-16 mt-10 bg-stone-950 rounded-2xl w-[30rem] py-12 right-10 flex gap-8 flex-col p-6">
           {cart &&
             cart.map((item) => (
-              <div className="cartBoxShower absolu" key={item.id}>
+              <div
+                className="cartBoxShower justify-between flex items-center gap-6"
+                key={item.id}
+              >
                 {item.name}
+                <div className="flex items-center gap-4">
+                  <Count />
+                </div>
+                {`${item.price} $`}
               </div>
             ))}
         </div>
