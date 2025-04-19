@@ -2,17 +2,12 @@ import { useEffect, useState } from "react";
 import { useDataCart } from "../../../useDataCart.jsx";
 import { Count } from "../Count/Count.jsx";
 import { AllPrice } from "../AllPrice/AllPrice.jsx";
+import { ProductCart } from "../ProductCart/ProductCart.jsx";
 
 const Cart = () => {
   const { products } = useDataCart();
   const [cart, setCart] = useState([]);
   const [showCart, setShowCart] = useState(false);
-  const [currentCount, setCurrentCount] = useState();
-
-  useEffect(() => {
-    console.log(currentCount);
-    console.log("AAAAAAAAAAAAAAAAAAAAa");
-  }, [currentCount]);
 
   useEffect(() => {
     const newMap = new Map();
@@ -33,9 +28,6 @@ const Cart = () => {
   }, [cart]);
   // --------------------------------------
   // Funktionen :
-  const changeCount = (inp) => {
-    setCurrentCount(Number(inp));
-  };
 
   return (
     <>
@@ -52,22 +44,7 @@ const Cart = () => {
                 <th></th>
               </tr>
             </thead>
-            {cart &&
-              cart.map((item) => (
-                <tbody className="" key={item.id}>
-                  <tr>
-                    <th scope="col" className="py-2">
-                      {item.name}
-                    </th>
-                    <td scope="col" className="flex gap-1 px-4 items-center">
-                      <Count changeCount={changeCount} />
-                    </td>
-                    <td scope="col">
-                      <AllPrice price={item.price} count={currentCount} />
-                    </td>
-                  </tr>
-                </tbody>
-              ))}
+            {cart && cart.map((item) => <ProductCart item={item} />)}
           </table>
           <div className="btns flex w-full justify-around">
             <button
