@@ -1,29 +1,41 @@
 import { useEffect, useState } from "react";
 import { useDataCart } from "../../../useDataCart.jsx";
-import { Count } from "../Count.jsx";
+import { Count } from "../Count/Count.jsx";
+import { AllPrice } from "../AllPrice/AllPrice.jsx";
 
 const Cart = () => {
   const { products } = useDataCart();
   const [cart, setCart] = useState([]);
   const [showCart, setShowCart] = useState(false);
+  const [currentCount, setCurrentCount] = useState();
+
+  useEffect(() => {
+    console.log(currentCount);
+    console.log("AAAAAAAAAAAAAAAAAAAAa");
+  }, [currentCount]);
+
   useEffect(() => {
     const newMap = new Map();
-    console.log(products);
+    // console.log(products);
     products.forEach((element) => {
       newMap.set(`item${element.id}`, element);
     });
-    console.log([...newMap]);
-    console.log(Array.from(newMap));
+    // console.log([...newMap]);
+    // console.log(Array.from(newMap));
     const arrForm = [...newMap];
     const secondItem = arrForm.map((i) => i[1]);
     setCart(secondItem);
-    console.log(secondItem);
-    console.log(newMap);
+    // console.log(secondItem);
+    // console.log(newMap);
   }, [products]);
   useEffect(() => {
-    console.log(cart);
+    // console.log(cart);
   }, [cart]);
   // --------------------------------------
+  // Funktionen :
+  const changeCount = (inp) => {
+    setCurrentCount(Number(inp));
+  };
 
   return (
     <>
@@ -42,15 +54,17 @@ const Cart = () => {
             </thead>
             {cart &&
               cart.map((item) => (
-                <tbody className="">
+                <tbody className="" key={item.id}>
                   <tr>
                     <th scope="col" className="py-2">
                       {item.name}
                     </th>
                     <td scope="col" className="flex gap-1 px-4 items-center">
-                      <Count />
+                      <Count changeCount={changeCount} />
                     </td>
-                    <td scope="col">{item.price} $</td>
+                    <td scope="col">
+                      <AllPrice price={item.price} count={currentCount} />
+                    </td>
                   </tr>
                 </tbody>
               ))}

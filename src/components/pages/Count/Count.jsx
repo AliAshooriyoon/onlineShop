@@ -1,16 +1,26 @@
 import { FaPlus } from "react-icons/fa";
 import { FaMinus } from "react-icons/fa";
 import { useState } from "react";
+import { useEffect } from "react";
 
-export const Count = () => {
+export const Count = ({ changeCount }) => {
   const [countProduct, setCountProduct] = useState(1);
-  console.log(countProduct);
+
+  // -----------------------------------
   const steigernNummer = () => {
     setCountProduct(countProduct < 10 ? countProduct + 1 : 10);
   };
   const reduzierenNummer = () => {
     setCountProduct(countProduct > 1 ? countProduct - 1 : 1);
   };
+  const chnageFunc = (inp) => {
+    setCountProduct(Number(inp));
+  };
+  useEffect(() => {
+    // changeCount(countProduct);
+    changeCount(countProduct);
+    console.log("Value ist geschickt! : ", countProduct);
+  }, [countProduct, changeCount]);
   return (
     <>
       <FaMinus onClick={reduzierenNummer} />
@@ -19,7 +29,7 @@ export const Count = () => {
         type="number"
         name="count"
         value={countProduct}
-        onChange={(event) => setCountProduct(Number(event.target.value))}
+        onChange={(event) => chnageFunc(event.target.value)}
         min={"1"}
         max={"10"}
       />
