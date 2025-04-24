@@ -3,11 +3,14 @@ import { useDataCart } from "../../../useDataCart.jsx";
 import { Count } from "../Count/Count.jsx";
 import { AllPrice } from "../AllPrice/AllPrice.jsx";
 import { ProductCart } from "../ProductCart/ProductCart.jsx";
+import { Rechnung } from "../Rechnung/Rechnung.jsx";
+import { useStatusOpacity } from "../../../useFinalCartData.jsx";
 
 const Cart = () => {
   const { products } = useDataCart();
   const [cart, setCart] = useState([]);
   const [showCart, setShowCart] = useState(false);
+  const [showRechnung, setShowRechnung] = useState(false);
 
   useEffect(() => {
     const newMap = new Map();
@@ -23,15 +26,17 @@ const Cart = () => {
     // console.log(secondItem);
     // console.log(newMap);
   }, [products]);
+  const { changeStatus } = useStatusOpacity();
   useEffect(() => {
-    // console.log(cart);
-  }, [cart]);
+    changeStatus(showRechnung);
+    console.log(showRechnung);
+  }, [showRechnung, changeStatus]);
   // --------------------------------------
   // Funktionen :
 
   return (
     <>
-      <div onClick={() => setShowCart(!showCart)} className="cart">
+      <div onClick={() => setShowCart(!showCart)} className={`cart `}>
         Cart ( {cart ? cart.length : 0} )
       </div>
       {showCart && (
@@ -50,6 +55,7 @@ const Cart = () => {
             <button
               className="cursor-pointer bg-amber-500 text-white py-3 px-8 rounded-2xl text-2xl"
               type="button"
+              onClick={() => setShowRechnung(true)}
             >
               Kaufen
             </button>
@@ -63,6 +69,7 @@ const Cart = () => {
           </div>
         </div>
       )}
+      {showRechnung && <Rechnung />}
     </>
   );
 };
