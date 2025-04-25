@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useDataCart } from "../../../useDataCart.jsx";
-import { Count } from "../Count/Count.jsx";
-import { AllPrice } from "../AllPrice/AllPrice.jsx";
+// import { Count } from "../Count/Count.jsx";
+// import { AllPrice } from "../AllPrice/AllPrice.jsx";
 import { ProductCart } from "../ProductCart/ProductCart.jsx";
 import { Rechnung } from "../Rechnung/Rechnung.jsx";
 import { useStatusOpacity } from "../../../useFinalCartData.jsx";
@@ -11,7 +11,8 @@ const Cart = () => {
   const [cart, setCart] = useState([]);
   const [showCart, setShowCart] = useState(false);
   const [showRechnung, setShowRechnung] = useState(false);
-
+  const [finalPrice, setFinalPrice] = useState([]);
+  const [calculateFinal, setCalculateFinal] = useState(0);
   useEffect(() => {
     const newMap = new Map();
     // console.log(products);
@@ -33,7 +34,30 @@ const Cart = () => {
   }, [showRechnung, changeStatus]);
   // --------------------------------------
   // Funktionen :
-
+  const getAllFinalPrice = (inpID, inpValue) => {
+    // finalPrice.inpID = inpValue;
+    console.log(inpID);
+    console.log(inpValue);
+    // finalPrice[inpID] = inpValue;
+    setFinalPrice((prev) => {
+      prev[inpID] = inpValue;
+      return [...prev];
+    });
+  };
+  useEffect(() => {
+    setCalculateFinal(0);
+    console.log(
+      "-----------------------finalPrice-----------------------------",
+    );
+    console.log(finalPrice);
+    finalPrice.forEach((item) => {
+      setCalculateFinal((prev) => (item ? prev + Number(item) : prev));
+    });
+  }, [finalPrice]);
+  useEffect(() => {
+    console.log("********************calculateFinal***********************");
+    console.log(calculateFinal);
+  }, [calculateFinal]);
   return (
     <>
       <div onClick={() => setShowCart(!showCart)} className={`cart `}>
@@ -49,7 +73,14 @@ const Cart = () => {
                 <th></th>
               </tr>
             </thead>
-            {cart && cart.map((item) => <ProductCart item={item} />)}
+            {cart &&
+              cart.map((item) => (
+                <ProductCart
+                  item={item}
+                  num={item.id}
+                  getAllFinalPrice={getAllFinalPrice}
+                />
+              ))}
           </table>
           <div className="btns flex w-full justify-around">
             <button

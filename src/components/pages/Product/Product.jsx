@@ -13,6 +13,7 @@ export const Product = ({ data }) => {
           src={data.picadd}
           alt=""
           className="productPic h-[50%] w-full rounded-t-2xl"
+          draggable={false}
         />
         <div className="productInfo flex flex-col justify-between h-[50%] py-4">
           <p className="productTitle text-center text-3xl pt-2">{data.name}</p>
