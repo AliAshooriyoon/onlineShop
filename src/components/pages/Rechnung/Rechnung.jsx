@@ -1,7 +1,7 @@
 import "./Rechnung.css";
 import { useRef } from "react";
 
-export const Rechnung = ({ calculateFinal }) => {
+export const Rechnung = ({ calculateFinal, closeRechnung }) => {
   const currentElm = useRef();
   // console.log(currentElm.current.parentElement.parentElement.parentElement);
   // currentElm.current.parentElement.style.filter = "blur(10px)";
@@ -42,6 +42,7 @@ export const Rechnung = ({ calculateFinal }) => {
           <button
             type="button"
             className=" bg-red-400 text-white w-44 h-14 rounded-2xl cursor-pointer "
+            onClick={() => closeRechnung(false)}
           >
             schließen
           </button>

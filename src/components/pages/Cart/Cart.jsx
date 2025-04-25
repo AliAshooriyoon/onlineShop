@@ -44,6 +44,9 @@ const Cart = () => {
       return [...prev];
     });
   };
+  const closeRechnung = (inp) => {
+    setShowRechnung(inp);
+  };
   useEffect(() => {
     setCalculateFinal(0);
     console.log(
@@ -100,7 +103,12 @@ const Cart = () => {
           </div>
         </div>
       )}
-      {showRechnung && <Rechnung calculateFinal={calculateFinal} />}
+      {showRechnung && (
+        <Rechnung
+          closeRechnung={closeRechnung}
+          calculateFinal={calculateFinal}
+        />
+      )}
     </>
   );
 };
