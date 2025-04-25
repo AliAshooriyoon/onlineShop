@@ -100,7 +100,7 @@ const Cart = () => {
           </div>
         </div>
       )}
-      {showRechnung && <Rechnung />}
+      {showRechnung && <Rechnung calculateFinal={calculateFinal} />}
     </>
   );
 };

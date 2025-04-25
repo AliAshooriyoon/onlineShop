@@ -2,3 +2,22 @@
   z-index: 1;
   filter: blur(0) !important;
 }
+label {
+  display: flex;
+  flex-direction: row;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+label input {
+  background-color: white;
+  width: 50%;
+  height: 3rem;
+  border-radius: 1rem;
+  color: #000;
+  outline: none;
+  text-indent: 1rem;
+  border: 0.2rem solid #fdc700;
+}
