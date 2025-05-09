@@ -32,6 +32,21 @@ const Cart = () => {
     changeStatus(showRechnung);
     console.log(showRechnung);
   }, [showRechnung, changeStatus]);
+
+  useEffect(() => {
+    console.log("********************calculateFinal***********************");
+    console.log(calculateFinal);
+  }, [calculateFinal]);
+  useEffect(() => {
+    setCalculateFinal(0);
+    console.log(
+      "-----------------------finalPrice-----------------------------",
+    );
+    console.log(finalPrice);
+    finalPrice.forEach((item) => {
+      setCalculateFinal((prev) => (item ? prev + Number(item) : prev));
+    });
+  }, [finalPrice]);
   // --------------------------------------
   // Funktionen :
   const getAllFinalPrice = (inpID, inpValue) => {
@@ -47,20 +62,6 @@ const Cart = () => {
   const closeRechnung = (inp) => {
     setShowRechnung(inp);
   };
-  useEffect(() => {
-    setCalculateFinal(0);
-    console.log(
-      "-----------------------finalPrice-----------------------------",
-    );
-    console.log(finalPrice);
-    finalPrice.forEach((item) => {
-      setCalculateFinal((prev) => (item ? prev + Number(item) : prev));
-    });
-  }, [finalPrice]);
-  useEffect(() => {
-    console.log("********************calculateFinal***********************");
-    console.log(calculateFinal);
-  }, [calculateFinal]);
   return (
     <>
       <div onClick={() => setShowCart(!showCart)} className={`cart `}>

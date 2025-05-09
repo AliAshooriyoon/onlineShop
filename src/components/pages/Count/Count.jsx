@@ -1,3 +1,4 @@
+import { MdDelete } from "react-icons/md";
 import { FaPlus } from "react-icons/fa";
 import { FaMinus } from "react-icons/fa";
 import { useState } from "react";
@@ -23,7 +24,7 @@ export const Count = ({ changeCount }) => {
   }, [countProduct, changeCount]);
   return (
     <>
-      <FaMinus onClick={reduzierenNummer} />
+      {countProduct > 1 ? <FaMinus onClick={reduzierenNummer} /> : <MdDelete />}
       <input
         className="count max-w-16 border-2 border-yellow-400 outline-0 rounded-2xl text-center"
         type="number"

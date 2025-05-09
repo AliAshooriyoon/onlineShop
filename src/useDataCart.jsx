@@ -7,8 +7,12 @@ const DataCartShower = ({ children }) => {
     setProducts((prev) => [...prev, newVal]);
     console.log(products);
   };
+
+  const deleteItem = (item) => {
+    setProducts((prev) => prev.filter((i) => i.id !== item.id));
+  };
   return (
-    <cartData.Provider value={{ addToCart, products }}>
+    <cartData.Provider value={{ addToCart, products, deleteItem }}>
       {children}
     </cartData.Provider>
   );
