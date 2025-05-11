@@ -3,11 +3,18 @@ import { FaPlus } from "react-icons/fa";
 import { FaMinus } from "react-icons/fa";
 import { useState } from "react";
 import { useEffect } from "react";
+import { useDataCart } from "../../../useDataCart";
 
-export const Count = ({ changeCount }) => {
+export const Count = ({ changeCount, item }) => {
   const [countProduct, setCountProduct] = useState(1);
-
+  const [wasIstEs, setWasEsIst] = useState(item);
+  const { deleteItem } = useDataCart();
   // -----------------------------------
+  const deleteProduct = () => {
+    console.log("a");
+    console.log(wasIstEs);
+    deleteItem(wasIstEs);
+  };
   const steigernNummer = () => {
     setCountProduct(countProduct < 10 ? countProduct + 1 : 10);
   };
@@ -24,7 +31,11 @@ export const Count = ({ changeCount }) => {
   }, [countProduct, changeCount]);
   return (
     <>
-      {countProduct > 1 ? <FaMinus onClick={reduzierenNummer} /> : <MdDelete />}
+      {countProduct > 1 ? (
+        <FaMinus onClick={reduzierenNummer} />
+      ) : (
+        <MdDelete onClick={deleteProduct} />
+      )}
       <input
         className="count max-w-16 border-2 border-yellow-400 outline-0 rounded-2xl text-center"
         type="number"

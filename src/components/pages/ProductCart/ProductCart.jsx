@@ -21,7 +21,7 @@ export const ProductCart = ({ item, getAllFinalPrice, num }) => {
             {num} {item.name}
           </th>
           <td scope="col" className="flex gap-1 px-4 items-center">
-            <Count changeCount={changeCount} />
+            <Count changeCount={changeCount} item={item} />
           </td>
           <td scope="col">
             <AllPrice
