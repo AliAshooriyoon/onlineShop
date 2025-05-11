@@ -5,31 +5,37 @@ import { useState } from "react";
 import { useEffect } from "react";
 import { useDataCart } from "../../../useDataCart";
 
-export const Count = ({ changeCount, item, doReload }) => {
+export const Count = ({ changeCount, item, doDelete }) => {
   const [countProduct, setCountProduct] = useState(1);
   const [wasIstEs, setWasEsIst] = useState(item);
-  const { deleteItem } = useDataCart();
+  // const { deleteItem } = useDataCart();
   // -----------------------------------
   const deleteProduct = () => {
-    console.log("a");
     console.log(wasIstEs);
-    deleteItem(wasIstEs);
-    doReload(true);
+    // deleteItem(wasIstEs);
+    doDelete(true);
+    setCountProduct(0);
+    changeCount(0);
+    console.log("deleteProduct");
   };
   const steigernNummer = () => {
     setCountProduct(countProduct < 10 ? countProduct + 1 : 10);
+    console.log("steigernNummer");
   };
   const reduzierenNummer = () => {
     setCountProduct(countProduct > 1 ? countProduct - 1 : 1);
+    console.log("reduzierenNummer");
   };
   const chnageFunc = (inp) => {
+    // for changing Count with Input directly;
     setCountProduct(Number(inp));
+    console.log("chnageFunc");
   };
   useEffect(() => {
     // changeCount(countProduct);
     changeCount(countProduct);
     console.log("Value ist geschickt! : ", countProduct);
-  }, [countProduct, changeCount]);
+  }, [countProduct]);
   return (
     <>
       {countProduct > 1 ? (
