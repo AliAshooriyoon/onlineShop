@@ -5,7 +5,7 @@ import { useState } from "react";
 import { useEffect } from "react";
 import { useDataCart } from "../../../useDataCart";
 
-export const Count = ({ changeCount, item }) => {
+export const Count = ({ changeCount, item, doReload }) => {
   const [countProduct, setCountProduct] = useState(1);
   const [wasIstEs, setWasEsIst] = useState(item);
   const { deleteItem } = useDataCart();
@@ -14,6 +14,7 @@ export const Count = ({ changeCount, item }) => {
     console.log("a");
     console.log(wasIstEs);
     deleteItem(wasIstEs);
+    doReload(true);
   };
   const steigernNummer = () => {
     setCountProduct(countProduct < 10 ? countProduct + 1 : 10);
