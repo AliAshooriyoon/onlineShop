@@ -16,7 +16,7 @@ export const BoxProduct = () => {
   }, []);
   return (
     <>
-      <div className="boxProduct p-4 flex justify-between items-center w-[70%] mx-auto flex-wrap gap-y-12">
+      <div className="boxProduct p-4 flex justify-between items-center xl:w-[80%] lg:w-[90%] mx-auto flex-wrap xl:gap-y-20 sm:gap-y-12">
         {loadedData &&
           shopData.map((item) => <Product data={item} key={item.id} />)}
       </div>

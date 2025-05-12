@@ -64,7 +64,10 @@ const Cart = () => {
   };
   return (
     <>
-      <div onClick={() => setShowCart(!showCart)} className={`cart `}>
+      <div
+        onClick={() => setShowCart(!showCart)}
+        className={`cart max-[550px]:text-xl`}
+      >
         Cart ( {cart ? cart.length : 0} )
       </div>
       {showCart && (
