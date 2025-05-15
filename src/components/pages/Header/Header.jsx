@@ -6,7 +6,7 @@ export const Header = () => {
     console.log(window.innerWidth);
     setPageSize(window.innerWidth);
   };
-  window.addEventListener("resize", checkSize);
+  window.addEventListener("load", checkSize);
   return (
     <>
       <div className="Header w-full h-20 flex justify-between items-center mb-24">
@@ -14,7 +14,7 @@ export const Header = () => {
           <img
             src="Food4-removebg-preview.png"
             alt=""
-            className="sm:w-24 sm:h-20 mb:max-w-24 mb:h-20  "
+            className="sm:w-24 sm:h-20 mb:max-w-24 mb:h-20 "
           />{" "}
           {pageSize > 450 && "Fertiggerichten"}
         </div>
